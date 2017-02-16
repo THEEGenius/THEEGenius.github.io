@@ -4,6 +4,10 @@
   outline: none;
 }
 
+.nav-container{
+  background: #4CAF50;
+}
+
 .page-title-span{
   margin-left: 10px;
 }
