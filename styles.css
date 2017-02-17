@@ -243,3 +243,16 @@ dialog::backdrop { /* native */
 .mdl-layout__header .mdl-layout__drawer-button{
   background-color: #4CAF50;
 }
+.mdl-textfield {
+    width:700px;
+}
+.mdl-button--update{
+  width: 700px;
+}
+#separater{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.numbers{
+  color: #90A4AE;
+}

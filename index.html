@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>CHUSE admin</title>
 
@@ -20,8 +19,6 @@
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
-
-    <link rel="shortcut icon" href="images/favicon.png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -88,18 +85,32 @@
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <div class="mdl-grid">
             <svg fill="#4CAF50" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
               <use xlink:href="#piechart" mask="url(#piemask)" />
               <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82</text>
             </svg>
-            <div class="mdl-layout-spacer"></div>
+            <h3 font-family="Roboto" class="numbers">Chosen By </h3>
+            <h3 id="separater" font-family="Roboto" class="numbers">||</h3>
+            <h3 font-family="Roboto" class="numbers">Reached</h3>
             <svg fill="#4CAF50" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
               <use xlink:href="#piechart" mask="url(#piemask)" />
               <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">100</text>
             </svg>
           </div>
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-            <div class="demo-separator mdl-cell--1-col"></div>
+            <div class="mdl-grid">
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
+                  <label class="mdl-textfield__label" for="sample5">Update Ad...</label>
+                </div>
+                <br>
+                <!-- Accent-colored raised button with ripple -->
+                <button class="mdl-button--update mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                  Update
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </main>
