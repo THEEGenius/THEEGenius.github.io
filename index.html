@@ -1,146 +1,331 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>CHUSE admin</title>
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-light_green.min.css">
-    <!--Dialog css-->
-    <link rel="stylesheet" type="text/css" href="dialog-polyfill.css" />
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <dialog id="login_dialog">
-      <h4 class="dialog_title">Sign in</h4>
-      <div class="dialog_content">
-        <p id="loginError"></p>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="loginEmail">
-          <label class="mdl-textfield__label" for="sample3">Email...</label>
-        </div><br>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="loginPassword">
-          <label class="mdl-textfield__label" for="sample3">Password...</label>
-        </div>
-      </div>
-      <div class="dialog_actions">
-        <!-- Colored raised button -->
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" id="loginBtn">
-        Sign in
-        </button>
-        <div id="loginProgress" class="mdl-spinner mdl-js-spinner is-active"></div>
-      </div>
-    </dialog>
-
-    <div class="login-cover">
-      <!-- MDL Spinner Component -->
-      <div class="page-loader mdl-spinner mdl-js-spinner is-active"></div>
-    </div>
-    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="nav-container mdl-layout__header-row">
-          <span class="mdl-layout-title">Home</span>
-          <div class="mdl-layout-spacer"></div>
-        </div>
-      </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header">
-          <img src="images/user.jpg" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
-            <div class="mdl-layout-spacer"></div>
-          </div>
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">history</i>History</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>Profile</a>
-          <!-- Accent-colored raised button with ripple -->
-          <button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Sign out
-          </button>
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
-        </nav>
-      </div>
-      <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
-          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-            <div class="mdl-grid">
-            <svg fill="#4CAF50" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)" />
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82</text>
-            </svg>
-            <h3 font-family="Roboto" class="numbers">Chosen By </h3>
-            <h3 id="separater" font-family="Roboto" class="numbers">||</h3>
-            <h3 font-family="Roboto" class="numbers">Reached</h3>
-            <svg fill="#4CAF50" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)" />
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">100</text>
-            </svg>
-          </div>
-            <div class="mdl-grid">
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
-                  <label class="mdl-textfield__label" for="sample5">Update Ad...</label>
-                </div>
-                <br>
-                <!-- Accent-colored raised button with ripple -->
-                <button class="mdl-button--update mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                  Update
-                </button>
-              </form>
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="img/favicon.png">
+      <title>Open Hive</title>
+      <link rel="stylesheet" href="css/components.css">
+      <link rel="stylesheet" href="css/responsee.css">
+      <link rel="stylesheet" href="css/icons.css">
+      <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
+      <link rel="stylesheet" href="owl-carousel/owl.theme.css">
+      <!-- CUSTOM STYLE -->
+      <link rel="stylesheet" href="css/openhive.css">
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+      <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+      <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/openhive.js"></script>
+   </head>
+   <body class="size-1140">
+      <!-- TOP NAV -->
+      <header>
+         <div id="topbar">
+            <div class="line">
+               <div class="s-12 m-6 l-6">
+               </div>
+               <div class="s-12 m-6 l-6">
+                  <div class="social right">
+                     <a href="https://www.facebook.com/OpenHiveInc"><i class="icon-facebook_circle"></i></a> <a href="https://twitter.com/OpenHive_BW"><i class="icon-twitter_circle"></i></a>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </main>
-    </div>
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
-        <defs>
-          <mask id="piemask" maskContentUnits="objectBoundingBox">
-            <circle cx=0.5 cy=0.5 r=0.49 fill="white" />
-            <circle cx=0.5 cy=0.5 r=0.40 fill="black" />
-          </mask>
-          <g id="piechart">
-            <circle cx=0.5 cy=0.5 r=0.5 />
-          </g>
-        </defs>
-      </svg>
-    <script src="dialog-polyfill.js"></script>
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCr5R85atuqAuzAVq6weaF1mj2v3060jR0",
-        authDomain: "chuse-cfdd5.firebaseapp.com",
-        databaseURL: "https://chuse-cfdd5.firebaseio.com",
-        storageBucket: "chuse-cfdd5.appspot.com",
-        messagingSenderId: "151675607060"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script src="index.js"></script>
-  </body>
+         </div>
+         <nav>
+            <div class="line">
+               <div class="s-12 l-2">
+                  <p class="logo"><strong>OPEN</strong>HIVE</p>
+               </div>
+               <div class="top-nav s-12 l-10">
+                  <ul class="right">
+                     <li class="active-item"><a href="#carousel">Home</a></li>
+                     <li><a href="#features">Culture</a></li>
+                     <li><a href="#about-us">About Us</a></li>
+                     <li><a href="#our-work">services</a></li>
+                     <li><a href="#services">Projects</a></li>
+                     <li><a href="#contact">Contact</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <section>
+         <!-- CAROUSEL -->
+         <div id="carousel">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+               <div class="item">
+                  <img src="img/software.jpg" alt="">
+                  <div class="line">
+                     <div class="text hide-s">
+                        <div class="line">
+                          <div class="prev-arrow hide-s hide-m">
+                             <i class="icon-chevron_left"></i>
+                          </div>
+                          <div class="next-arrow hide-s hide-m">
+                             <i class="icon-chevron_right"></i>
+                          </div>
+                        </div>
+                        <h2>Software Development</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="item">
+                  <img src="img/media.jpg" alt="">
+                  <div class="line">
+                     <div class="text hide-s">
+                        <div class="line">
+                          <div class="prev-arrow hide-s hide-m">
+                             <i class="icon-chevron_left"></i>
+                          </div>
+                          <div class="next-arrow hide-s hide-m">
+                             <i class="icon-chevron_right"></i>
+                          </div>
+                        </div>
+                        <h2>Media</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="item">
+                  <img src="img/tech_idea.jpg" alt="">
+                  <div class="line">
+                     <div class="text hide-s">
+                        <div class="line">
+                          <div class="prev-arrow hide-s hide-m">
+                             <i class="icon-chevron_left"></i>
+                          </div>
+                          <div class="next-arrow hide-s hide-m">
+                             <i class="icon-chevron_right"></i>
+                          </div>
+                        </div>
+                        <h2>Innovative Tech Ideas</h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- FIRST BLOCK -->
+         <div id="first-block">
+            <div class="line">
+               <h1>OPEN HIVE. INNOVATE! CREATE!</h1>
+               <p>Software development and media company. Aiming to introduce innovative and disruptive digital media and software ideas to change Botswana and the whole of Africa and eventually become one of the biggest players in the tech world.</p>
+               <div class="s-12 m-4 l-2 center"><a class="white-btn" href="#contact">Contact Us</a></div>
+            </div>
+         </div>
+         <!-- CULTURE -->
+         <div id="features">
+            <div class="line">
+               <div class="margin">
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-sli-screen-desktop icon3x"></i>
+                     <h2>Disruptive</h2>
+                     <p>Changing how things have been done by disrupting the norm and stepping out of box through software and technology development.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-sli-people icon3x"></i>
+                     <h2>Connective</h2>
+                     <p>Developing products and ideas to connect the community through a deep understanding of human and social aspect of technology.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-sli-star icon3x"></i>
+                     <h2>Fun</h2>
+                     <p>Always keeping the fun element while creating great things for our users and the world.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-sli-emotsmile icon3x"></i>
+                     <h2>People First</h2>
+                     <p>Our company puts people first. Creating solutions to simplify day-to-day activities and save them costs.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- ABOUT US -->
+         <div id="about-us">
+            <div class="s-12 m-12 l-6 media-container">
+               <img src="img/logo.png" alt="">
+            </div>
+            <article class="s-12 m-12 l-6">
+               <h2>We are...<br>Open Hive</h2>
+               <p>We are a software development company focusing on developing ground breaking applications
+                 to improve and simplify the state of living. Our vision is to develop disruptive tech and
+                 make the world a better place.
+               </p>
+               <h2>Innovate. Create.</h2>
+               <div class="about-us-icons">
+                  <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+               </div>
+            </article>
+         </div>
+         <!-- OUR SERVICES -->
+         <div id="our-work">
+            <div class="line">
+               <h2 class="section-title">Our services</h2>
+               <div class="tabs">
+                  <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">Web Design &amp; Development</a>
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Static</h4><p>Simple and basic web pages that are delivered to the user exactly as stored.</p></div><img src="img/static.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Dynamic</h4><p>Web pages that contain client-side scripting and/or server-side scripting to generate changing content.</p></div><img src="img/dynamic.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Responsive</h4><p>Web design aimed at allowing desktop webpages to be viewed in response to the size of the screen or web browser.</p></div><img src="img/responsive.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Maintenance</h4><p>We go beyond development and offer you maintenance and support services to help you manage your website.</p></div><img src="img/maintenance.png" alt=""></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-item">
+                    <a class="tab-label">App Development</a>
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Native Apps</h4><p>Applications that have been developed for use on a particular platform or device.</p></div><img src="img/native.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Hybrid Apps</h4><p>Applications that conbines the best of both the native and HTML5 worlds.</p></div><img src="img/hybrid.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Progressive Web Apps</h4><p>Installable web applications that use service workers to power offline functionality, push notifications, background content updating, content caching, and a whole lot more.</p></div><img src="img/pwa.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Admin Panels</h4><p>A dashboard for the admin to perform content management.</p></div><img src="img/admin.png" alt=""></a></div>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- OUR PROJECTS -->
+         <div id="services">
+            <div class="line">
+               <h2 class="section-title">Our projects</h2>
+               <div class="margin">
+                  <div class="s-12 m-6 l-4 margin-bottom">
+                     <i class="icon-credit_card"></i>
+                     <div class="service-text">
+                        <h3>LaFID</h3>
+                        <p>COMING SOON...</p>
+                     </div>
+                  </div>
+                  <div class="s-12 m-6 l-4 margin-bottom">
+                     <i class="icon-sli-location-pin"></i>
+                     <div class="service-text">
+                        <h3>ChUse</h3>
+                        <p>COMING SOON...</p>
+                     </div>
+                  </div>
+                  <div class="s-12 m-12 l-4 margin-bottom">
+                     <i class="icon-random"></i>
+                     <div class="service-text">
+                        <h3>HIKE</h3>
+                        <p>COMING SOON...</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Events -->
+         <div id="latest-news">
+            <div class="line">
+              <h2 class="section-title">Events</h2>
+              <div class="margin">
+                <div class="s-12 m-6 l-6">
+                  <div class="s-12 l-2">
+                    <div class="news-date">
+                      <!--<p class="day">31</p><p class="month">MARCH</p><p class="year">2017</p>-->
+                      <p class="day">?</p><p class="month">Date to be announced></p>
+                    </div>
+                  </div>
+                  <div class="s-12 l-10">
+                    <div class="news-text">
+                      <h4>Open Hack</h4>
+                      <p>Hackathon powered by Open Hive.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="s-12 m-6 l-6">
+                  <div class="s-12 l-2">
+                    <div class="news-date">
+                      <!--<p class="day">7</p><p class="month">APRIL</p><p class="year">2017</p>-->
+                      <p class="day">?</p><p class="month">Date to be announced></p>
+                    </div>
+                  </div>
+                  <div class="s-12 l-10">
+                    <div class="news-text">
+                      <h4>chUse Launch day</h4>
+                      <p>Open Hive launching it's first ever app.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+         <!-- CONTACT -->
+         <div id="contact">
+            <div class="line">
+               <h2 class="section-title">Contact Us</h2>
+               <div class="margin">
+                  <div class="s-12 m-12 l-3 hide-m hide-s margin-bottom right-align">
+                    <img src="img/contact.jpg" alt="">
+                  </div>
+                  <div class="s-12 m-12 l-4 margin-bottom right-align">
+                     <h3>Open Hive - Innovate. Create.</h3>
+                     <address>
+                        <p><strong>Adress:</strong> Paledi House, BIH FSVC First Floor, Plot 50664 Fairgrounds, Gaborone</p>
+                        <p><strong>Country:</strong> Botswana</p>
+                        <p><strong>Phone:</strong> +267 75 753 878</p>
+                        <!--<p><strong>E-mail:</strong> aseokana@gmail.com</p>-->
+                     </address>
+                     <br />
+                     <h3>Social</h3>
+                     <p><i class="icon-facebook icon"></i> <a href="https://www.facebook.com/OpenHiveInc">OpenHiveInc</a></p>
+                     <p class="margin-bottom"><i class="icon-twitter icon"></i> <a href="https://twitter.com/OpenHive_BW">OpenHive_BW</a></p>
+                  </div>
+                  <div class="s-12 m-12 l-5">
+                    <h3>Contact Form</h3>
+                    <form class="customform" action="">
+                      <div class="s-12"><input name="" placeholder="Your e-mail" title="Your e-mail" type="text" /></div>
+                      <div class="s-12"><input name="" placeholder="Your name" title="Your name" type="text" /></div>
+                      <div class="s-12"><textarea placeholder="Your message" name="" rows="5"></textarea></div>
+                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit">Submit</button></div>
+                    </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- FOOTER -->
+      <footer>
+         <div class="line">
+            <div class="s-12 l-6">
+               <p>Copyright 2017, Open Hive - Innovate. Create</p>
+            </div>
+            <div class="s-12 l-6">
+               <a class="right" href="http://www.openhive.info" title="Responsee - lightweight responsive framework">Design and coding<br> by Open Hive Team</a>
+            </div>
+         </div>
+      </footer>
+      <script type="text/javascript" src="js/responsee.js"></script>
+      <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
+      <script type="text/javascript">
+         jQuery(document).ready(function($) {
+            var theme_slider = $("#owl-demo");
+            $("#owl-demo").owlCarousel({
+                navigation: false,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                autoPlay: 6000,
+                addClassActive: true,
+             // transitionStyle: "fade",
+                singleItem: true
+            });
+            $("#owl-demo2").owlCarousel({
+                slideSpeed: 300,
+                autoPlay: true,
+                navigation: true,
+                navigationText: ["&#xf007","&#xf006"],
+                pagination: false,
+                singleItem: true
+            });
+
+            // Custom Navigation Events
+            $(".next-arrow").click(function() {
+                theme_slider.trigger('owl.next');
+            })
+            $(".prev-arrow").click(function() {
+                theme_slider.trigger('owl.prev');
+            })
+        });
+      </script>
+   </body>
 </html>

@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/bin/nodejs /usr/bin/firebase serve
+[debug] CLI Version:  3.2.3
+[debug] Platform:     linux
+[debug] Node Version: v7.5.0
+[debug] Time:         Fri Feb 17 2017 17:32:36 GMT+0200 (CAT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /home/aobakwe/THEEGenius.github.io
+[info] Public Directory: chuse
+[info] 
+[info] Server listening at: http://localhost:5000
